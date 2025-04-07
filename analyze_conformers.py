@@ -26,7 +26,7 @@ class ensemble:
         # Compute principal moments for each conformer and store the results
         for ni in range(1, self.conformers + 1):
             # Open XYZ file
-            fi = self.path / ni / 'conf.xyz'
+            fi = self.path / str(ni) / 'conf.xyz'
             # Create mol object from XYZ
             mol = rdc.MolFromXYZFile(fi)
             # Retrieve conformer from mol object
