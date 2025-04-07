@@ -93,7 +93,11 @@ class ensemble:
         results_name = 'Folded' if folded == True else 'Unfolded'
         print(results_name + ' structures: ' + ', '.join(map(str, candidates + 1)))
         print(f'Best candidate: ' + str(candidates[0] + 1))
-        print(f'Percentile used: {round(current_bound_value, 2)}')
+        
+        if folded == True:
+            print(f'Percentile used: {round(current_bound_value, 2)}')
+        else:
+            print(f'Percentile used: {round(1 - current_bound_value, 2)}')
         return
  
 
