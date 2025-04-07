@@ -83,13 +83,17 @@ class ensemble:
             first_bound = np.quantile(self.data[:,0], 1 - current_bound_value)
             second_bound = np.quantile(self.data[:,1], current_bound_value)
             third_bound = np.quantile(self.data[:,2], current_bound_value)
-            candidates = np.nonzero((self.data[:,0] < first_bound) & (self.data[:,1] > second_bound) & (self.data[:,2] > third_bound))[0]
+            
+            if folded == True:
+                candidates = np.nonzero((self.data[:,0] > first_bound) & (self.data[:,1] < second_bound) & (self.data[:,2] < third_bound))[0]
+            else:
+                candidates = np.nonzero((self.data[:,0] < first_bound) & (self.data[:,1] > second_bound) & (self.data[:,2] > third_bound))[0]
         
         # Print results
         results_name = 'Folded' if folded == True else 'Unfolded'
         print(results_name + ' structures: ' + ', '.join(map(str, candidates + 1)))
         print(f'Best candidate: ' + str(candidates[0] + 1))
-        print(f'Percentile used: {round(bound_value, 2)}')
+        print(f'Percentile used: {round(current_bound_value, 2)}')
         return
  
 
