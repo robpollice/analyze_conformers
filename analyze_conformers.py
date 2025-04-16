@@ -16,7 +16,7 @@ class ensemble:
     
     def count_conformers(self):
         # Obtain number of conformers based on number of subdirectories
-        self.conformers = sum(1 for pi in self.path.glob('*') if pi.is_dir())
+        self.conformers = sum(1 for pi in self.path.glob('*') if pi.is_dir() and 'MRMSD' not in str(pi))
         
         # Initiate array of principal moments for each conformer
         self.data = np.zeros((self.conformers,3))
